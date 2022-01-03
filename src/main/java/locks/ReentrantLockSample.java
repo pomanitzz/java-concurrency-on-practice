@@ -23,16 +23,16 @@ Threads access to resource:Thread-1Thread-0Thread-2
 Threads access to resource:Thread-1Thread-0Thread-2Thread-3
 Threads access to resource:Thread-1Thread-0Thread-2Thread-3Thread-4
  */
-public class LockSample {
+public class ReentrantLockSample {
 
     static Lock lock = new ReentrantLock();
 
     public static void main(String[] args) {
-        Thread t1 = new Thread(LockSample::accessResource);
-        Thread t2 = new Thread(LockSample::accessResource);
-        Thread t3 = new Thread(LockSample::accessResource);
-        Thread t4 = new Thread(LockSample::accessResource);
-        Thread t5 = new Thread(LockSample::accessResource);
+        Thread t1 = new Thread(ReentrantLockSample::accessResource);
+        Thread t2 = new Thread(ReentrantLockSample::accessResource);
+        Thread t3 = new Thread(ReentrantLockSample::accessResource);
+        Thread t4 = new Thread(ReentrantLockSample::accessResource);
+        Thread t5 = new Thread(ReentrantLockSample::accessResource);
 
         t1.start();
         t2.start();
