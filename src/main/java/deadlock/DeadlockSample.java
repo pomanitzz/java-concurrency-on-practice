@@ -4,6 +4,9 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
+ * 1. jps           - will show all java PIDs
+ * 2. jstack {PID}  - will show stacktrace
+ *
  * ps aux - in terminal, to find PID of java process ids
  * jstack 39180 > ./out.txt - to print stack trace into ./out.txt file
  *
