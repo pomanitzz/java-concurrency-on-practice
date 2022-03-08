@@ -16,7 +16,7 @@ public class AdderSample {
 
         Thread.sleep(500);
 
-        CountDownLatch countDownLatch = new CountDownLatch(100);
+        CountDownLatch countDownLatch = new CountDownLatch(1000);
         AtomicLong al = new AtomicLong();
         long startTime = System.nanoTime();
         for (int i = 0; i < 1000; i++) {
@@ -29,7 +29,7 @@ public class AdderSample {
         Thread.sleep(500);
 
         LongAdder la = new LongAdder();
-        countDownLatch = new CountDownLatch(100);
+        countDownLatch = new CountDownLatch(1000);
         startTime = System.nanoTime();
         for (int i = 0; i < 1000; i++) {
             executorService.submit(new TaskAdder(la, countDownLatch));
