@@ -12,10 +12,12 @@ public class CyclicBarrierSample {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
 
         executorService.submit(new Task(cyclicBarrier));
+        Thread.sleep(350);
         executorService.submit(new Task(cyclicBarrier));
+        Thread.sleep(350);
         executorService.submit(new Task(cyclicBarrier));
 
-        Thread.sleep(3_000);
+        Thread.sleep(2_000);
         executorService.shutdown();
     }
 }
@@ -32,11 +34,12 @@ class Task implements Runnable {
     public void run() {
         while (true) {
             try {
+                System.out.println("Thread: " + Thread.currentThread().getName() + " came at: " + System.nanoTime());
                 cyclicBarrier.await();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("Do some operation  cyclicBarrier: " + System.nanoTime());
+            System.out.println("Do some operation cyclicBarrier: " + System.nanoTime());
             break;
         }
     }
