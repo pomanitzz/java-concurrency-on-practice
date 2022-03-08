@@ -8,7 +8,7 @@ public class PhaserSample {
         Phaser ph = new Phaser(1);
         int curPhase;
         curPhase = ph.getPhase();
-        System.out.println("Phase in Main " + curPhase + " started");
+        System.out.println("Phase in atomicref.Main " + curPhase + " started");
         // Threads for first phase
         new FileReaderThread("thread-1", "file-1", ph);
         new FileReaderThread("thread-2", "file-2", ph);
