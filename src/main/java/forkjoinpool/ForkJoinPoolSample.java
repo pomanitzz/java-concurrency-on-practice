@@ -20,10 +20,14 @@ public class ForkJoinPoolSample {
         System.out.println("Total time in one thread: " + (System.currentTimeMillis() - startTime));
     }
 
-    public static long countInOneThread(int[] array) throws Exception {
+    public static long countInOneThread(int[] array) {
         long sum = 0;
         for (int j : array) {
-            Thread.sleep(1);
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             sum += j;
         }
         return sum;
@@ -48,14 +52,14 @@ class ValueSumCounter extends RecursiveTask<Integer> {
 
     @Override
     protected Integer compute() {
-        if (array.length <= 2) {
+        if (array.length <= 500) {
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
 //            System.out.printf("Task %s execute in thread %s%n", this, Thread.currentThread().getName());
-            return Arrays.stream(array).sum();
+            }
+            return (int) ForkJoinPoolSample.countInOneThread(array);
         }
         ValueSumCounter firstHalfArrayValueSumCounter = new ValueSumCounter(Arrays.copyOfRange(array, 0, array.length / 2));
         ValueSumCounter secondHalfArrayValueSumCounter = new ValueSumCounter(Arrays.copyOfRange(array, array.length / 2, array.length));
